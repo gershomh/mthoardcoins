@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mt Hoard Coins</title>
+<meta name="description" content="Mt Hoard Coins — professionally sealed collectible coin packs with full public checklists.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   1. EDIT YOUR COLORS & FONTS HERE
+   Change a value once and it updates everywhere.
+   ========================================================= */
+:root {
+  --bg:        #14110f;   /* page background (deep cave) */
+  --panel:     #1e1a16;   /* cards / boxes */
+  --line:      #3a3229;   /* borders, table lines */
+  --text:      #ece6dc;   /* main text */
+  --muted:     #a89d8d;   /* secondary text */
+  --gold:      #d4a640;   /* accent color */
+  --gold-soft: #2a2215;   /* light gold background */
+  --heading-font: 'Cinzel', Georgia, serif;
+  --body-font:    'Inter', system-ui, sans-serif;
+  --max-width: 960px;
+}
+
+/* =========================================================
+   2. BASIC LAYOUT (rarely needs changing)
+   ========================================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font);
+  font-size: 17px;
+  line-height: 1.65;
+}
+.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+section { padding: 64px 0; border-top: 1px solid var(--line); }
+h1, h2, h3 { font-family: var(--heading-font); color: var(--gold); line-height: 1.2; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); }
+h2 { font-size: 1.8rem; margin-bottom: 20px; }
+h3 { font-size: 1.3rem; margin-bottom: 8px; }
+p  { margin-bottom: 14px; }
+a  { color: var(--gold); }
+.muted { color: var(--muted); }
+
+/* Header / nav */
+header { position: sticky; top: 0; background: rgba(20,17,15,.95); border-bottom: 1px solid var(--line); z-index: 10; }
+header .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+.logo { font-family: var(--heading-font); font-size: 1.3rem; color: var(--gold); text-decoration: none; font-weight: 700; }
+nav a { color: var(--text); text-decoration: none; margin-left: 22px; font-size: .95rem; }
+nav a:hover { color: var(--gold); }
+
+/* Hero */
+.hero { padding: 90px 0 70px; text-align: center; border-top: none; }
+.hero p { font-size: 1.15rem; color: var(--muted); max-width: 620px; margin: 18px auto 28px; }
+.btn { display: inline-block; background: var(--gold); color: #1a1408; padding: 12px 26px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+
+/* Series card */
+.series { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 32px; margin-bottom: 32px; }
+.series-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.badge { background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold); padding: 3px 12px; border-radius: 99px; font-size: .8rem; font-weight: 600; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0 26px; }
+.fact { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+.fact span { display: block; font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.fact strong { font-size: 1.15rem; }
+
+/* Checklist table */
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
+.final { margin-top: 22px; padding: 16px 18px; border-left: 3px solid var(--gold); background: var(--gold-soft); font-size: .95rem; }
+
+/* Steps & FAQ */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.step { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+.step .num { font-family: var(--heading-font); color: var(--gold); font-size: 1.6rem; }
+details { border-bottom: 1px solid var(--line); padding: 16px 0; }
+summary { cursor: pointer; font-weight: 600; }
+details p { margin-top: 10px; color: var(--muted); }
+
+footer { border-top: 1px solid var(--line); padding: 32px 0; font-size: .9rem; color: var(--muted); text-align: center; }
+
+@media (max-width: 600px) {
+  nav a { margin: 0 14px 0 0; }
+  .series { padding: 22px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">⛰ Mt Hoard Coins</a>
+    <nav>
+      <a href="#series">Series</a>
+      <a href="#how">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <h1>Mt Hoard Coins</h1>
+    <p>Professionally sealed collectible coin packs. Every series has a complete, public checklist, so you know exactly what's in the hoard before you buy.</p>
+    <a class="btn" href="#series">View Current Series</a>
+  </div>
+</div>
+
+<!-- =========================================================
+     SERIES & CHECKLISTS
+     To add a new series: copy everything from
+     "SERIES START" to "SERIES END", paste it below, and edit.
+     ========================================================= -->
+<section id="series">
+  <div class="wrap">
+    <h2>Series &amp; Checklists</h2>
+    <p class="muted">Each pack contains one coin. Every coin in a series is listed below.</p>
+
+    <!-- ===== SERIES START: Dragon's Hoard Series 1 ===== -->
+    <article class="series" id="dragons-hoard-1">
+      <div class="series-head">
+        <h3>Dragon's Hoard — Series 1</h3>
+        <span class="badge">Finalized</span>
+      </div>
+
+      <p>Manufacturer: <strong>Mt Hoard Coins</strong> &nbsp;·&nbsp; Product: <strong>Dragon's Hoard Sealed Coin Pack</strong> &nbsp;·&nbsp; Series: <strong>Series 1</strong></p>
+
+      <div class="facts">
+        <div class="fact"><span>Coins per pack</span><strong>1 gold coin</strong></div>
+        <div class="fact"><span>Packs in series</span><strong>20</strong></div>
+        <div class="fact"><span>Total coins</span><strong>20</strong></div>
+        <div class="fact"><span>MSRP per pack</span><strong>$50</strong></div>
+      </div>
+
+      <h3 style="font-size:1.05rem;">Full Checklist</h3>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Qty</th>
+              <th>Coin name / type</th>
+              <th>Year</th>
+              <th>Weight</th>
+              <th>Grade / Condition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>[Coin name, e.g., American Gold Eagle] — .999 gold</td>
+              <td>[Year]</td>
+              <td>1/10 oz</td>
+              <td>[Grader &amp; grade, e.g., PCGS MS70]</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>[Coin name / mint] — .999 gold</td>
+              <td>[Year]</td>
+              <td>1/1000 oz</td>
+              <td>Uncirculated–Mint (ungraded)</td>
+            </tr>
+            <!-- If the 19 small coins differ in year or design, give each
+                 its own row instead of grouping them. -->
+          </tbody>
+        </table>
+      </div>
+
+      <p class="final">
+        As of <strong>[Month Day, 2026]</strong>, Dragon's Hoard Series 1 is finalized.
+        The series contains 20 sealed packs and 20 coins total, and these numbers will not change.
+        All packs are sealed by Mt Hoard Coins in a single facility.
+      </p>
+    </article>
+    <!-- ===== SERIES END ===== -->
+
+  </div>
+</section>
+
+<!-- =========================================================
+     HOW IT WORKS
+     ========================================================= -->
+<section id="how">
+  <div class="wrap">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Curated</h3>
+        <p class="muted">We select every coin by hand and record it on the series checklist before sealing.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>Sealed</h3>
+        <p class="muted">Each coin is professionally sealed in branded packaging by Mt Hoard Coins in one facility.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Opened Live</h3>
+        <p class="muted">Packs are sold and opened on camera on Whatnot. Every coin is shown when revealed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FAQ
+     ========================================================= -->
+<section id="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details>
+      <summary>Where can I buy Mt Hoard Coins packs?</summary>
+      <p>Live on Whatnot at <a href="https://www.whatnot.com/user/[your-username]">[your Whatnot username]</a>.</p>
+    </details>
+    <details>
+      <summary>How do I know what's in a series?</summary>
+      <p>Every series has a complete checklist on this page showing each coin, its year, weight, and grade or condition.</p>
+    </details>
+    <details>
+      <summary>Can a series change after it's released?</summary>
+      <p>No. Once a series is marked finalized, its pack count and contents are locked.</p>
+    </details>
+    <details>
+      <summary>How are ungraded coins described?</summary>
+      <p>Raw coins are placed in one of three condition groups: Poor–Fair, Good–Extremely Fine, or Uncirculated–Mint.</p>
+    </details>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>Questions about a series or an order? Email <a href="mailto:[you@mthoardcoins.com]">[you@mthoardcoins.com]</a>.</p>
+    <p class="muted">[Business legal name, e.g., Mt Hoard Coins LLC] · [City], Colorado</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Mt Hoard Coins. All rights reserved.
+</footer>
+
+</body>
+</html>
